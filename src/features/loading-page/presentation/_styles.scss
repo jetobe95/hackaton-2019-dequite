@@ -1,0 +1,14 @@
+.loading-page-container {
+    height: 100vh;
+    background: url(../../../assets/sound-house.png), linear-gradient(to bottom, #DD166B, #000);
+    background-repeat:  no-repeat;
+    background-position: top 2.5rem left 2.5rem,center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        animation:spin 2s linear infinite;
+    }
+}
+
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="95px" height="125px" viewBox="0 0 95 125" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>Path Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="101.999998%" y2="100.999999%" id="linearGradient-1">
+            <stop stop-color="#DD166B" offset="0%"></stop>
+            <stop stop-color="#722FD9" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Landing_Loading-Copy-2" transform="translate(-593.000000, -338.000000)" fill="url(#linearGradient-1)">
+            <path d="M634.189657,364.846132 L634.172893,436.153868 C634.172893,445.895784 627.420706,451.698582 619.656709,451.698582 C611.741839,451.698582 605.480589,445.895784 605.480589,436.153868 L605.504538,410.82629 L593.021553,410.82629 L593,436.153868 C593,452.88605 604.968099,463 619.656709,463 C634.11901,463 646.809146,452.88605 646.809146,436.153868 L646.809146,390.190088 L646.803159,390.190088 L646.827107,364.846132 C646.827107,355.104216 653.579294,349.302588 661.343291,349.302588 C669.259359,349.302588 675.519411,355.104216 675.519411,364.846132 L675.479896,390.448641 L687.96288,390.448641 L688,364.846132 C688,348.11395 676.031901,338 661.343291,338 C646.88099,338 634.189657,348.11395 634.189657,364.846132 Z" id="Path-Copy"></path>
+        </g>
+    </g>
+</svg>

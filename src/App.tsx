@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import LandingLoadingPage from './features/landing-loading-page/presentation';
 import LandingPage from './features/landing-page/presentation';
 import {
@@ -7,7 +7,10 @@ import {
   Route
 } from 'react-router-dom'
 import LoadingPage from './features/loading-page/presentation';
-import UserAuth from './core/auth';
+import UserContext, { IUserContext } from './core/auth-context';
+import HomePage from './features/home-page';
+import SelectGenrePage from './features/select-genre-page/presentation';
+import LeftSideBar from './core/presentation/components/side-bar';
 
 interface AppState {
   token: string,
@@ -23,49 +26,26 @@ const publicRoutes = (
   </>
 )
 const privateRoutes = (
-  <>
-    <Route exact component={LandingPage} path='/' />
-    <Route exact component={LoadingPage} path='/loading' />
-    <Route exact component={LandingLoadingPage} path='/landing-loading' />
-  </>
+  <div className='app-container'>
+    <LeftSideBar/>
+    <Route exact component={HomePage} path='/' />
+    <Route exact component={SelectGenrePage} path='/select-genre' />
+  </div>
 )
 
 class App extends React.Component<any, AppState> {
-  private userAuth: UserAuth;
-  constructor(props: any) {
-    super(props)
-    this.userAuth = new UserAuth();
-    this.state = {
-      token: '',
-      loading: true
-    };
-  };
-
-  async componentDidMount() {
-    await this.getToken()
-  }
-
-  getToken = async () => {
-    this.setState({ loading: true })
-    const token: string = await this.userAuth.getToken()
-    console.log(token)
-    this.setState({ loading: false, token })
-  }
-
-
-
-
-
   render() {
-    const { loading, token } = this.state;
-    const { landingPageShown } = this.userAuth;
+    const { landingPageShown, token, loadingToken }: IUserContext = this.context;
     let selectedRoutes;
+    if (loadingToken) {
+      return <LandingLoadingPage />
+    }
 
-    if(loading){
+    if (landingPageShown) {
       return <LandingLoadingPage></LandingLoadingPage>
     }
 
-    if (!landingPageShown) {
+    if (!token) {
       selectedRoutes = publicRoutes
     } else {
       selectedRoutes = privateRoutes
@@ -80,6 +60,7 @@ class App extends React.Component<any, AppState> {
     );
   }
 }
+App.contextType = UserContext;
 
 
 export default App;

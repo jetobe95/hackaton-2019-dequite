@@ -4,9 +4,20 @@
   padding: 0;
 }
 body {
-font-family: 'Quicksand'
+font-family: 'Quicksand';
+font-weight: 400;
+
 }
+
+
+@mixin vertical-primary-gradient {
+  background: linear-gradient(to bottom , #BB135B, #000);
+}
+
+@import './styles';
+@import './core/presentation/components/side-bar/styles';
 
 @import './features/landing-page/presentation/styles';
 @import './features/landing-loading-page/presentation/styles';
 @import './features/loading-page/presentation/styles';
+@import './features/select-genre-page/presentation/styles';

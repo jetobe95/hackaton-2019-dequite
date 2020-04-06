@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import SocialButton from './components/social-button';
+import UserContext from '../../../core/auth-context';
 
 function LandingPage(params: any) {
+    const userContext = useContext(UserContext);
+
+    async function signInAnonimo() {
+        userContext.setToken('anonimo');
+        userContext.setLandingPageShown(true);
+    }
+
     return (
         <div>
             <section className='landing-page-section section-1'>
@@ -21,7 +29,10 @@ function LandingPage(params: any) {
                         />
                     </div>
                     <p className='mb-1' style={{ color: 'white' }}> - OR - </p>
-                    <a href='/' style={{color:'white'}}> Try without logging in </a>
+                    <button
+                        className='landing-page-button'
+                        onClick={signInAnonimo}
+                    > Try without logging in </button>
                 </article>
             </section>
             <div className="black-gradient"></div>

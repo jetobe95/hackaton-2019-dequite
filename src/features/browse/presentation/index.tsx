@@ -54,8 +54,8 @@ function SongRowItem(props: SongRowItemProps) {
             <div className="leading-container">
                 <img src={EminenCover} alt="" className="song-cover" />
                 <span className='song-icon-options'>
-                    <span>❤️</span>
-                    <span>{' '}</span>
+                    <span aria-label='im' role='img'>❤️</span>
+                    <span aria-label='im' role='img'>{' '}</span>
                     <span>🛠</span>
                 </span>
             </div>

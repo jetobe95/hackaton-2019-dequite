@@ -4,7 +4,8 @@ import LandingPage from './features/landing-page/presentation';
 import {
   BrowserRouter,
   Switch,
-  Route
+  Route,
+  Redirect,
 } from 'react-router-dom'
 import LoadingPage from './features/loading-page/presentation';
 import UserContext, { IUserContext } from './core/auth-context';
@@ -23,21 +24,25 @@ interface AppState {
 
 
 const publicRoutes = (
-  <>
+  <Switch >
     <Route exact component={LandingPage} path='/' />
-    <Route exact component={LoadingPage} path='/loading' />
-    <Route exact component={LandingLoadingPage} path='/landing-loading' />
+    <Route component={LoadingPage} path='/loading' />
+    <Route component={LandingLoadingPage} path='/landing-loading' />
+    <Route component={LandingLoadingPage} path='/landing-loading' />
     <Route component={PageNotFound} />
-  </>
+  </Switch>
 )
 const privateRoutes = (
-  <div className='app-container'>
-    <LeftSideBar />
-    <Route exact component={HomePage} path='/' />
-    <Route exact component={SelectGenrePage} path='/select-genre' />
-    <Route exact component={BrowsePage} path={NavigationKeys.browse} />
-    <BottomPlayer />
-  </div>
+  <Switch >
+    <div className='app-container'>
+      <LeftSideBar />
+      <Route exact component={HomePage} path='/' />
+      <Route component={SelectGenrePage} path='/select-genre' />
+      <Route component={BrowsePage} path={NavigationKeys.browse} />
+      <Route component={PageNotFound} path='/not-found' />
+      <BottomPlayer />
+    </div>
+  </Switch>
 )
 
 class App extends React.Component<any, AppState> {
@@ -58,11 +63,10 @@ class App extends React.Component<any, AppState> {
       selectedRoutes = privateRoutes
     }
 
+
     return (
-      <BrowserRouter>
-        <Switch>
-          {selectedRoutes}
-        </Switch>
+      <BrowserRouter >
+        {selectedRoutes}
       </BrowserRouter>
     );
   }

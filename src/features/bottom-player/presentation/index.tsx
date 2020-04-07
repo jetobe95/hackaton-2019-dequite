@@ -11,7 +11,7 @@ export default function BottomPlayer(params: any) {
                 <div className="song-subtitle-container">
                     <span className="song-subtitle">Rap God (Explicit & Expl</span>
                     <span className="favorite-container">
-                        <span className="favorite-icon button">❤️</span>
+                        <span  aria-label='im' className="favorite-icon button" role='img'>❤️</span>
                     </span>
                 </div>
             </div>

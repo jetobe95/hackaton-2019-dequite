@@ -1,0 +1,79 @@
+.bottom-player-container {
+    background-color: #252525;
+    grid-column: 1/3;
+    display: flex;
+    align-items: stretch;
+    box-shadow: 1px 1px 6px 0 rgba($color: black, $alpha: 0.5);
+
+
+    // Todos los h3 color blanco
+    & h3,
+    span {
+        color: white;
+        font-size: 0.9rem;
+    }
+
+    .song-description-container {
+        margin-left: 1rem;
+        align-self: center;
+        flex-grow: 1;
+        
+        .artist-name {
+            font-size: 0.9rem;
+            color: darken($color: white, $amount: 50%);
+            margin-bottom: 0.25rem;
+        }
+        
+        .song-subtitle-container {
+            .song-subtitle{
+                display: inline-block;
+            }
+            .favorite-container {
+                margin-left: 1rem;
+                display: inline-block;
+                width: 10%;
+            }
+        }
+    }
+
+    .play-controls-container {
+        flex-grow: 2;
+        @include dflex-center;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: space-evenly;
+
+        .row-icons-container {
+            text-align: center;
+        }
+
+
+
+        .line-reproductor-container {
+            @include dflex-center;
+            align-items: center;
+
+            .line {
+                margin: {
+                    left: 0.5rem;
+                    right: 0.5rem;
+                }
+
+                flex-grow: 1;
+                height: .25rem;
+                background: linear-gradient(45deg, #DD166B, #722FD9);
+            }
+
+            .time-count {
+                color: white;
+                font-size: 0.8rem;
+            }
+        }
+
+    }
+
+    .right-icons-container {
+        flex-grow: 1;
+        @include dflex-center;
+    }
+}

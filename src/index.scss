@@ -9,8 +9,8 @@
 body {
   font-family: 'Quicksand';
   font-weight: 400;
-
 }
+
 
 
 @mixin vertical-primary-gradient {
@@ -22,11 +22,21 @@ body {
   text-decoration: underline;
 }
 
-.button:hover{
+@mixin border() {
+  border: 1px solid white;
+}
+
+@mixin dflex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button:hover {
   @include button;
 }
 
-@import './styles';
+@import './app';
 @import './core/presentation/components/side-bar/styles';
 
 
@@ -37,3 +47,4 @@ body {
 @import './features/loading-page/presentation/styles';
 @import './features/select-genre-page/presentation/styles';
 @import './features/browse/presentation/styles';
+@import './features/bottom-player/presentation/styles';

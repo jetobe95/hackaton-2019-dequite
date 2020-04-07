@@ -1,12 +1,13 @@
 import React from 'react'
+import EminenCover from '../../../assets/eminem.png';
 
-export default function BrowsePage(params:any) {
+export default function BrowsePage(params: any) {
     return (
-        <div className="browser-containe">
+        <div className="browser-container">
             <p>
-                <span className='button'>{" < "}</span>
-                <span className='button'>{" > "}</span>
-                <span>Nombre del artista</span>
+                <span className='navigation-indicator button'>{" < "}</span>
+                <span className='navigation-indicator button'>{" > "}</span>
+                <span className='browse-title'>The Killers Radio</span>
             </p>
             <p>
                 <span>Show All</span>
@@ -15,11 +16,52 @@ export default function BrowsePage(params:any) {
             </p>
 
             <div className="song-list">
-                <div className="song-item">
-                    
-                </div>
-                
+                <SongRowItem {...new Song1()} />
+                <SongRowItem {...new Song2()} />
+                <SongRowItem {...new Song2()} />
+                <SongRowItem {...new Song2()} />
+                <SongRowItem {...new Song2()} />
+
+
             </div>
+        </div>
+    )
+}
+
+interface SongRowItemProps {
+    coverImage: string
+    songName: string
+    albumName: string
+    duration: string
+}
+class Song1 implements SongRowItemProps {
+    coverImage: string = EminenCover;
+    songName: string = 'Enterlude';
+    albumName: string = 'The Killers'
+    duration: string = '6:20';
+
+}
+class Song2 implements SongRowItemProps {
+    coverImage: string = EminenCover;
+    songName: string = 'Mr. Brightside';
+    albumName: string = 'The Killers'
+    duration: string = '6:20';
+
+}
+function SongRowItem(props: SongRowItemProps) {
+    return (
+        <div className="song-row-item-container">
+            <div className="leading-container">
+                <img src={EminenCover} alt="" className="song-cover" />
+                <span className='song-icon-options'>
+                    <span>❤️</span>
+                    <span>{' '}</span>
+                    <span>🛠</span>
+                </span>
+            </div>
+            <span className="song-title">{props.songName}</span>
+            <span className="artist-title">{props.albumName}</span>
+            <span className="duration">{props.duration}</span>
         </div>
     )
 }

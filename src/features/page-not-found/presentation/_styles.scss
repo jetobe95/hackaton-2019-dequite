@@ -1,0 +1,8 @@
+.page-not-found {
+    height: 100vh;
+    @include vertical-primary-gradient;
+
+    h1 {
+        color: white
+    }
+}

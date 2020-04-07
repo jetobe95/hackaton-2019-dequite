@@ -1,41 +1,52 @@
-.select-genre-container {
+.select-genre-container {}
+
+.select-genre-grid {
     padding: 2rem 1rem;
-    @include vertical-primary-gradient();
+    min-height: 100vh;
     display: grid;
-    width: 100%;
-    grid-template-columns: repeat(5, minmax(100px));
-    grid-template-rows: repeat(6, minmax(70px, 90px));
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 12rem));
+    grid-template-rows: repeat(auto-fit, minmax(70px, 90px));
     grid-gap: 1.1rem;
     overflow: scroll;
-
-    .skip {
-        color: white;
-        grid-column: 4 / 6;
-        justify-self: flex-end;
-        align-self: center;
-        margin-right: 2rem;
-        font-size: 1.25rem;
-    }
 }
 
+
+
 .welcome-message-container {
-    grid-column: 1 / 4;
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 25%;
     width: 100%;
-    height: 100%;
-    align-self: center;
-    justify-self: center;
+    grid-gap: 1rem;
 
     .welcome-message {
+        grid-column: 1/2;
         color: white;
+        font-size: 2rem;
     }
+
     p {
         color: white;
         font-size: 1.25rem;
     }
 
+    .skip {
+        color: white;
+        justify-self: flex-end;
+        align-self: center;
+        margin-right: 2rem;
+        font-size: 1.25rem;
+        &:hover{
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+
 }
-.genre-item  {
-    border-radius: 0.25rem;
+
+.genre-item {
+    border-radius: 0.5rem;
     color: white;
     text-align: center;
     background: url(../../../assets//genres/indie.png);
@@ -46,45 +57,66 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+
     h4 {
         font-size: 1rem;
     }
-    &:hover{
-        opacity: 0.76;
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+
+}
+
+$genres:('african',
+    'blues',
+    'brazilian',
+    'christian',
+    'classical',
+    'colombian',
+    'dance',
+    'electronic',
+    'folk',
+    'indie',
+    'jazz',
+    'latin',
+    'merengue',
+    'metal',
+    'mexican',
+    'pop',
+    'rap',
+    'reggae',
+    'reggaeton',
+    'rnb',
+    'rock',
+    'salsa',
+    'soul',
+    'tvgaming',
+    'vallenato'
+);
+
+@each $genre in $genres {
+    .genre-item.#{$genre} {
+        $url:url("../../../assets/genres/#{$genre}"+'.png');
+        $checkbox_url: url("../../../assets/genres/checkbox.png");
+        background: $url;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+
+        &.active {
+            background-image: $checkbox_url, $url;
+            background-size: 1.2rem, cover;
+            background-position: right 0.6rem top 0.6rem, center;
+            background-color: rgba($color: #ffff, $alpha: 1);
+
+        }
+
     }
 }
 
-
-
-
-
-$genres:(
-    'african', 
-    'blues', 
-    'brazilian', 
-    'checkbox', 
-    'christian', 
-    'classical', 
-    'colombian', 
-    'dance', 
-    'electronic', 
-    'folk', 
-    'indie', 
-    'jazz', 
-    'landing-image', 
-    'landing-page-img-1', 
-    'latin', 
-    'merengue', 
-    'metal', 
-    'mexican', 
-    'pop', 
-    'rap', 
-    'reggae', 
-    'reggaeton', 
-    'rnb', 
-    'rock', 
-    'salsa', 
-    'soul', 
-    'tvgaming', 
-    'vallenato'
-);
+.genre-title-shadow {
+    text-shadow: 0 2px 4px rgba($color: #000000, $alpha: .5);
+}

@@ -1,46 +1,55 @@
 import React from 'react';
-import { Link, LinkProps, NavLink, NavLinkProps } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import soundHouseLogo from '../../../../assets/sound-house.png'
-
+import NavigationKeys from '../../../navigation/key';
 
 export default function LeftSideBar(props: any) {
-
+    const activeClass:string = 'active';
     return (
         <div className='side-bar-container'>
-            <img src={soundHouseLogo} className='logo' />
-            <input type="text" placeholder='search' />
+            <img src={soundHouseLogo} className='logo' alt='soung-house-logo.png'/>
+            <input type="text" placeholder='Search' className='search-side-bar' />
             <div style={{ marginBottom: '3rem' }}></div>
             <NavLink
-                component={LeftTabItem}
-                isActive={(p, a) => {
-                    return true
-                }} 
-                activeClassName='left-gradient active' 
-                to='/hello' >
+                exact={false}
+                isActive={(_, { pathname }) => (pathname === ('/select-genre') || pathname === '/')}
+                activeClassName={activeClass}
+                to='/' >
                 Home
             </NavLink>
-
-            <a href="#">Browse</a>
+            <NavLink
+                activeClassName={activeClass}
+                to={NavigationKeys.browse} >
+                Browse
+            </NavLink>
             <br />
-            <a href="#">Your music</a>
-            <a href="#">Your songs</a>
-            <a href="#">Artists</a>
+            <NavLink
+                activeClassName={activeClass}
+                to={NavigationKeys.yourMusic} >
+                Your music
+            </NavLink>
+            <NavLink
+                activeClassName={activeClass}
+                to={NavigationKeys.mySongs} >
+              My Songs
+            </NavLink>
+            <NavLink
+                activeClassName={activeClass}
+                to={NavigationKeys.artists} >
+                    Artists
+            </NavLink>
+          
             <br />
-            <a href="#">Playlists</a>
-            <a href="#">+ Create playlist</a>
-            <a href="#">Artists</a> 
-        </div>
-    )
-}
-
-
-
-function LeftTabItem({ className }: any) {
-    console.log(className)
-    
-    return (
-        <div className='left-gradient active'>
-            <a  href="#">Home</a>
+            <NavLink
+                activeClassName={activeClass}
+                to={NavigationKeys.playLists} >
+                    Playlists
+            </NavLink>
+            <NavLink
+                activeClassName={activeClass}
+                to={NavigationKeys.createPlayLists} >
+                   + Create playlist
+            </NavLink>
         </div>
     )
 }

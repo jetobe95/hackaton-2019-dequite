@@ -1,23 +1,39 @@
-*,*::before,*::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 body {
-font-family: 'Quicksand';
-font-weight: 400;
+  font-family: 'Quicksand';
+  font-weight: 400;
 
 }
 
 
 @mixin vertical-primary-gradient {
-  background: linear-gradient(to bottom , #BB135B, #000);
+  background: linear-gradient(to bottom, #BB135B, #000);
+}
+
+@mixin button {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.button:hover{
+  @include button;
 }
 
 @import './styles';
 @import './core/presentation/components/side-bar/styles';
 
+
+@import './features/home-page/presentation/styles';
+@import './features/page-not-found/presentation/styles';
 @import './features/landing-page/presentation/styles';
 @import './features/landing-loading-page/presentation/styles';
 @import './features/loading-page/presentation/styles';
 @import './features/select-genre-page/presentation/styles';
+@import './features/browse/presentation/styles';

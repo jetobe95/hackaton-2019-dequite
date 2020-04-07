@@ -1,8 +1,9 @@
 .app-container{
-    height: 100vh;
+    @include vertical-primary-gradient();
     height: 100vh;
     display: grid;
     grid-template: {
         columns: 16% 1fr;
     };
+
 }

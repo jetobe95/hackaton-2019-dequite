@@ -8,9 +8,12 @@ import {
 } from 'react-router-dom'
 import LoadingPage from './features/loading-page/presentation';
 import UserContext, { IUserContext } from './core/auth-context';
-import HomePage from './features/home-page';
+import HomePage from './features/home-page/presentation';
 import SelectGenrePage from './features/select-genre-page/presentation';
 import LeftSideBar from './core/presentation/components/side-bar';
+import PageNotFound from './features/page-not-found/presentation';
+import NavigationKeys from './core/navigation/key';
+import BrowsePage from './features/browse/presentation';
 
 interface AppState {
   token: string,
@@ -23,6 +26,7 @@ const publicRoutes = (
     <Route exact component={LandingPage} path='/' />
     <Route exact component={LoadingPage} path='/loading' />
     <Route exact component={LandingLoadingPage} path='/landing-loading' />
+    <Route  component={PageNotFound}/>
   </>
 )
 const privateRoutes = (
@@ -30,6 +34,7 @@ const privateRoutes = (
     <LeftSideBar/>
     <Route exact component={HomePage} path='/' />
     <Route exact component={SelectGenrePage} path='/select-genre' />
+    <Route exact component={BrowsePage} path={NavigationKeys.browse} />
   </div>
 )
 

@@ -1,9 +1,20 @@
-import React from 'react';
-import exampleCover from '../../../assets/eminem.png';
+import React, { useContext } from 'react';
+import ReactPlater from 'react-player';
+import PlayerContext from '../../../core/player-context';
 export default function BottomPlayer(params: any) {
+    const playerContext = useContext(PlayerContext);
+    const { song } = playerContext;
+    let url = '';
+    if (song != undefined) {
+        url = song.url;
+    }
+
+
     return (
         <div className="bottom-player-container">
-            <img src={exampleCover} alt="Eminen" />
+            <div className='video-thumbnail'>
+                <ReactPlater url={url} style={{ 'display': 'none' }} playing={playerContext.isPlaying} />
+            </div>
             <div className="song-description-container">
                 <div className="artist-name-container">
                     <h3 className="artist-name">Eminem Music</h3>
@@ -11,7 +22,7 @@ export default function BottomPlayer(params: any) {
                 <div className="song-subtitle-container">
                     <span className="song-subtitle">Rap God (Explicit & Expl</span>
                     <span className="favorite-container">
-                        <span  aria-label='im' className="favorite-icon button" role='img'>❤️</span>
+                        <span aria-label='im' className="favorite-icon button" role='img'>❤️</span>
                     </span>
                 </div>
             </div>

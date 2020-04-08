@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { Provider } from './core/auth-context';
+import { Provider } from './core/user-context';
+import { PlayerProvider } from './core/player-context';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider  >
-      <App />
-    </Provider>
+    <PlayerProvider>
+      <Provider  >
+        <App />
+      </Provider>
+    </PlayerProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

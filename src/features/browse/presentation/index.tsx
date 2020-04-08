@@ -1,7 +1,10 @@
 import React from 'react'
 import EminenCover from '../../../assets/eminem.png';
+import PlayerContext from '../../../core/player-context';
+import Song from '../../../core/domain/entities/song';
 
 export default function BrowsePage(params: any) {
+    const { setSong, isPlaying,setPlaying } = React.useContext(PlayerContext);
     return (
         <div className="browser-container">
             <p>
@@ -16,11 +19,26 @@ export default function BrowsePage(params: any) {
             </p>
 
             <div className="song-list">
-                <SongRowItem {...new Song1()} />
-                <SongRowItem {...new Song2()} />
-                <SongRowItem {...new Song2()} />
-                <SongRowItem {...new Song2()} />
-                <SongRowItem {...new Song2()} />
+                <SongRowItem {...new Song1()} onClick={() => {
+                    setSong(new Song('Hola', 'DE', 'https://www.youtube.com/watch?v=OXJojqTzJL0&t=559s'))
+                    setPlaying(true)
+                }} />
+                <SongRowItem {...new Song2()} onClick={() => {
+                    setSong(new Song('Hola', 'DE', 'https://www.youtube.com/watch?v=OXJojqTzJL0&t=559s'))
+                    setPlaying(true)
+                }} />
+                <SongRowItem {...new Song2()} onClick={() => {
+                    setSong(new Song('Hola', 'DE', 'https://www.youtube.com/watch?v=OXJojqTzJL0&t=559s'))
+                    setPlaying(true)
+                }} />
+                <SongRowItem {...new Song2()} onClick={() => {
+                    setSong(new Song('Hola', 'DE', 'https://www.youtube.com/watch?v=OXJojqTzJL0&t=559s'))
+                    setPlaying(true)
+                }} />
+                <SongRowItem {...new Song2()} onClick={() => {
+                    setSong(new Song('Hola', 'DE', 'https://www.youtube.com/watch?v=OXJojqTzJL0&t=559s'))
+                    setPlaying(true)
+                }} />
 
 
             </div>
@@ -33,8 +51,12 @@ interface SongRowItemProps {
     songName: string
     albumName: string
     duration: string
+    onClick(): void
 }
 class Song1 implements SongRowItemProps {
+    onClick(): void {
+        throw new Error("Method not implemented.");
+    }
     coverImage: string = EminenCover;
     songName: string = 'Enterlude';
     albumName: string = 'The Killers'
@@ -42,6 +64,9 @@ class Song1 implements SongRowItemProps {
 
 }
 class Song2 implements SongRowItemProps {
+    onClick(): void {
+        throw new Error("Method not implemented.");
+    }
     coverImage: string = EminenCover;
     songName: string = 'Mr. Brightside';
     albumName: string = 'The Killers'
@@ -50,7 +75,9 @@ class Song2 implements SongRowItemProps {
 }
 function SongRowItem(props: SongRowItemProps) {
     return (
-        <div className="song-row-item-container">
+        <div
+            onClick={props.onClick}
+            className="song-row-item-container">
             <div className="leading-container">
                 <img src={EminenCover} alt="" className="song-cover" />
                 <span className='song-icon-options'>

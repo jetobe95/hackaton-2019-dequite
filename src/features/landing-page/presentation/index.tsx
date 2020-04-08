@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import SocialButton from './components/social-button';
-import UserContext from '../../../core/auth-context';
+import UserContext from '../../../core/user-context';
 
 function LandingPage(params: any) {
     const userContext = useContext(UserContext);

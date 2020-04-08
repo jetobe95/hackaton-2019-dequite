@@ -8,7 +8,7 @@ import {
   Redirect,
 } from 'react-router-dom'
 import LoadingPage from './features/loading-page/presentation';
-import UserContext, { IUserContext } from './core/auth-context';
+import UserContext, { IUserContext } from './core/user-context';
 import HomePage from './features/home-page/presentation';
 import SelectGenrePage from './features/select-genre-page/presentation';
 import LeftSideBar from './core/presentation/components/side-bar';

@@ -5,7 +5,6 @@ import {
   BrowserRouter,
   Switch,
   Route,
-  Redirect,
 } from 'react-router-dom'
 import LoadingPage from './features/loading-page/presentation';
 import UserContext, { IUserContext } from './core/user-context';
@@ -15,7 +14,7 @@ import LeftSideBar from './core/presentation/components/side-bar';
 import PageNotFound from './features/page-not-found/presentation';
 import NavigationKeys from './core/navigation/key';
 import BrowsePage from './features/browse/presentation';
-import BottomPlayer from './features/bottom-player/presentation';
+// import BottomPlayer from './features/bottom-player/presentation';
 
 interface AppState {
   token: string,
@@ -34,14 +33,16 @@ const publicRoutes = (
 )
 const privateRoutes = (
   <Switch >
-    <div className='app-container'>
-      <LeftSideBar />
-      <Route exact component={HomePage} path='/' />
-      <Route component={SelectGenrePage} path='/select-genre' />
-      <Route component={BrowsePage} path={NavigationKeys.browse} />
-      <Route component={PageNotFound} path='/not-found' />
-      <BottomPlayer />
-    </div>
+    <>
+      <div className='app-container'>
+        <LeftSideBar />
+        <Route exact component={HomePage} path='/' />
+        <Route component={SelectGenrePage} path='/select-genre' />
+        <Route component={BrowsePage} path={NavigationKeys.browse} />
+        <Route component={PageNotFound} path='/not-found' />
+        {/* <BottomPlayer /> */}
+      </div>
+    </>
   </Switch>
 )
 

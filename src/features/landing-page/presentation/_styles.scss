@@ -1,4 +1,5 @@
 @import './components/styles';
+
 .landing-page-section {
     height: 100vh;
 }
@@ -12,6 +13,16 @@
     background-repeat: no-repeat;
     background-size: auto, cover;
     background-color: #dd166b;
+
+    @media screen and (max-width:map-get($map: $sizes, $key:'sm')) {
+        background-size:  auto 4rem, cover;
+    }
+    @media screen  and (orientation: landscape)   {
+        background-position: top 2.5rem right 2.5rem, center;
+        background-size:  auto 4rem, cover;
+        padding: 0 2rem;
+    }
+
 
 }
 
@@ -47,23 +58,32 @@
     display: flex;
     margin-bottom: 1rem;
 }
-.mb-1{
-    margin-bottom: 1rem;
-}
+
 
 .landing-main-title {
     color: white;
     font-size: 4rem;
+    font-weight: 400;
+
+    @media screen and (max-width:map-get($map: $sizes, $key:'sm')) {
+        font-size: 2.4rem;
+        text-align: center;
+    }
 }
+
 .landing-main-subtitle {
     color: white;
     font-size: 1.2rem;
+    @media screen and (max-width:map-get($map: $sizes, $key:'sm')) {
+        text-align: center;
+    }
 }
-.text-align-right{
+
+.text-align-right {
     text-align: right;
 }
 
-.landing-page-button{
+.landing-page-button {
     background: transparent;
     cursor: pointer;
     border: none;
@@ -71,4 +91,3 @@
     font-size: 1.2rem;
     text-decoration: underline;
 }
-

@@ -6,7 +6,7 @@ import NavigationKeys from '../../../navigation/key';
 export default function LeftSideBar(props: any) {
     const activeClass:string = 'active';
     return (
-        <div className='side-bar-container'>
+        <nav className='side-bar-container'>
             <img src={soundHouseLogo} className='logo' alt='soung-house-logo.png'/>
             <input type="text" placeholder='Search' className='search-side-bar' />
             <div style={{ marginBottom: '3rem' }}></div>
@@ -50,6 +50,6 @@ export default function LeftSideBar(props: any) {
                 to={NavigationKeys.createPlayLists} >
                    + Create playlist
             </NavLink>
-        </div>
+        </nav>
     )
 }

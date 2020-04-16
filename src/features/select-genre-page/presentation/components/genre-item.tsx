@@ -1,11 +1,12 @@
 import React from 'react'
+import Genre from '../../../../core/models/genres'
 
 
 export interface GenreItemProps {
-    genre: string,
-    selectedGenres: string[],
-    popGenre(genre: string): void
-    appendGenre(genre: string): void
+    genre: Genre,
+    selectedGenres: Genre[],
+    popGenre(genre: Genre): void
+    appendGenre(genre: Genre): void
 }
 export default function GenreItem({ genre, selectedGenres, appendGenre, popGenre }: GenreItemProps) {
     const active = selectedGenres.some((genreItem) => genre === genreItem)
@@ -18,11 +19,11 @@ export default function GenreItem({ genre, selectedGenres, appendGenre, popGenre
     }
     return (
         <div
-            key={genre}
+            key={genre.name}
             onClick={onPress}
-            className={`genre-item ${genre} ${active ? 'active' : ''}`}>
+            className={`genre-item ${genre.name} ${active ? 'active' : ''}`}>
             <h4 className={active ? 'genre-title-shadow' : ''}>
-                Genre {genre}
+                {`Genre ${genre.name}`}
             </h4>
         </div>)
 }

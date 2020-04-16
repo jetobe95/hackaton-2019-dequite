@@ -4,7 +4,7 @@ import PlayerContext from '../../../core/player-context';
 import Song from '../../../core/domain/entities/song';
 
 export default function BrowsePage(params: any) {
-    const { setSong, isPlaying,setPlaying } = React.useContext(PlayerContext);
+    const { setSong,setPlaying } = React.useContext(PlayerContext);
     return (
         <div className="browser-container">
             <p>

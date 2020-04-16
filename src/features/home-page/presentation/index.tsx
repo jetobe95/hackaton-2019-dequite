@@ -1,7 +1,19 @@
 import React from "react";
+import { Redirect } from 'react-router-dom'
+import _ from 'lodash';
+import UserContext, { IUserContext } from "../../../core/user-context";
+import NavigationKeys from "../../../core/navigation/key";
 
 
 export default function HomePage(params: any) {
+
+    const userContext: IUserContext = React.useContext(UserContext);
+    const { user } = userContext;
+    if (_.isEmpty(user.genres)) { 
+        return (
+            <Redirect to={NavigationKeys.selectGenre}/>
+        )
+    }
     return (
         <div className="home-container">
             <h1 className='home-main-title'>

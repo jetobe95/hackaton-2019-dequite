@@ -7,6 +7,8 @@
     justify-content: center;
     grid-template-columns: repeat(auto-fit, minmax(10rem, 12rem));
     grid-template-rows: repeat(auto-fit, minmax(70px, 90px));
+    // grid-auto-columns: repeat(auto-fit, minmax(70px, 90px));
+    grid-auto-rows: 90px;
     grid-gap: 1.1rem;
     overflow: scroll;
 }
@@ -46,6 +48,7 @@
 }
 
 .genre-item {
+    user-select: none;
     border-radius: 0.5rem;
     color: white;
     text-align: center;
@@ -62,11 +65,6 @@
     h4 {
         font-size: 1rem;
     }
-
-    &:hover {
-        opacity: 0.9;
-    }
-
 
 }
 
@@ -105,12 +103,13 @@ $genres:('african',
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
+        transition: background-color .1s;
 
         &.active {
             background-image: $checkbox_url, $url;
             background-size: 1.2rem, cover;
             background-position: right 0.6rem top 0.6rem, center;
-            background-color: rgba($color: #ffff, $alpha: 1);
+            background-color: rgba($color: #ffff, $alpha: .9);
 
         }
 

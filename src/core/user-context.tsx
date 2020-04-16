@@ -1,4 +1,5 @@
 import React, { createContext } from 'react'
+import User from './models/user';
 
 export enum LoginType {
     fb,
@@ -6,14 +7,8 @@ export enum LoginType {
     anonimo
 }
 
-
-
-export interface IUser {
-    name: string,
-    loginType: LoginType
-}
 export interface IUserContext {
-    user: IUser,
+    user: User,
     landingPageShown: boolean,
     setLandingPageShown(action: boolean): void,
     getLandingPageShown(): boolean,
@@ -22,56 +17,42 @@ export interface IUserContext {
     getToken(): Promise<string>,
     loadingToken: boolean,
     setLoadingToken(bool: boolean): void,
+    setUser(User: User): void,
+    getUser(): User,
 }
 
-class IUserContextImp implements IUserContext {
-    setLoadingToken(bool: boolean): void {
-        this.loadingToken = true;
-    }
+
+const UserContext = createContext<any>({});
+export class Provider extends React.Component implements IUserContext {
     loadingToken: boolean = false;
-    user: IUser = {
-        loginType: LoginType.anonimo,
-        name: 'Anónimo'
-    }
+    user: User = new User()
     landingPageShown: boolean = false;
     token: string = '';
-    setLandingPageShown(action: boolean): void {
-        throw new Error("Method not implemented.");
-    }
-    getLandingPageShown(): boolean {
-        throw new Error("Method not implemented.");
-    }
-    setToken(token: string): void {
-        throw new Error("Method not implemented.");
-    }
-    getToken(): Promise<string> {
-        throw new Error("Method not implemented.");
-    }
-}
-
-
-
-const UserContext = createContext<IUserContext>(new IUserContextImp());
-
-
-export class Provider extends React.Component implements IUserContextImp {
-
-
 
     async componentDidMount() {
         this.setLoadingToken(true)
         const token = await this.getToken()
+        this.user = this.getUser()
         this.setToken(token);
         this.setLoadingToken(false);
     }
 
-    loadingToken: boolean = false;
-    user: IUser = {
-        loginType: LoginType.anonimo,
-        name: 'Anónimo'
+    setUser = (user: User): void => {
+        localStorage.setItem('user', user.toJSON())
+        this.user = user;
+        this.setState({})
     }
-    landingPageShown: boolean = false;
-    token: string = '';
+
+    getUser(): User {
+        const jsonString = localStorage.getItem('user');
+        if (jsonString) {
+            const userJson = JSON.parse(jsonString);
+            const user = new User(userJson.name, userJson.genres);
+            return user;
+        } else {
+            return new User();
+        }
+    }
     setLoadingToken = (bool: boolean) => {
         this.loadingToken = bool;
         this.setState({})
@@ -118,7 +99,9 @@ export class Provider extends React.Component implements IUserContextImp {
             setLandingPageShown: this.setLandingPageShown,
             user: this.user,
             loadingToken: this.loadingToken,
-            setLoadingToken: this.setLoadingToken
+            setLoadingToken: this.setLoadingToken,
+            setUser: this.setUser,
+            getUser: this.getUser
         }
         return (
             <UserContext.Provider value={value}>

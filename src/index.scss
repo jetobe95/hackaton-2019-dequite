@@ -6,15 +6,37 @@
   padding: 0;
 }
 
-body {
-  font-family: 'Quicksand';
-  font-weight: 400;
+
+$sizes:('lg':1280px,
+  'md':1024px,
+  'sm':540px,
+);
+
+$sides:('top':'t', 'right':'r', 'bottom':'b', 'left':'l');
+
+@each $side,
+$abbr in $sides {
+  @for $i from 1 to 10 {
+    .m#{$abbr}-#{$i} {
+      margin-#{$side}: $i * 1rem;
+    }
+
+    .p#{$abbr}-#{$i} {
+      padding-#{$side}: $i * 1rem;
+    }
+  }
 }
 
 
 
+
+
+
 @mixin vertical-primary-gradient {
-  background: linear-gradient(to bottom, #BB135B, #000);
+  background: linear-gradient(to bottom, #BB135B, #000) fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  // background-attachment: fixed;
 }
 
 @mixin button {
@@ -35,6 +57,16 @@ body {
 .button:hover {
   @include button;
 }
+
+html{
+  
+  @include vertical-primary-gradient();
+  height: 100%;
+}
+body {
+  font-family: 'Quicksand', sans-serif;
+}
+
 
 @import './app';
 @import './core/presentation/components/side-bar/styles';

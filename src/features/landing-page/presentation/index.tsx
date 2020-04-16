@@ -1,13 +1,21 @@
 import React, { useContext } from 'react';
 import SocialButton from './components/social-button';
-import UserContext from '../../../core/user-context';
+import UserContext, { IUserContext } from '../../../core/user-context';
+// import LandingPageBloc from '../bloc/landing-page-bloc';
+import User from '../../../core/models/user';
 
 function LandingPage(params: any) {
-    const userContext = useContext(UserContext);
+    // const bloc = new LandingPageBloc()
+    const userContext:IUserContext = useContext(UserContext);
 
     async function signInAnonimo() {
-        userContext.setToken('anonimo');
-        userContext.setLandingPageShown(true);
+        const name = prompt('Como te llamas');
+        if(name){
+            userContext.setUser(new User(name))
+            userContext.setToken('anonimo');
+            userContext.setLandingPageShown(true);
+
+        }
     }
 
     return (
@@ -40,7 +48,7 @@ function LandingPage(params: any) {
                 <article className="branding">
                     <div>
                         <h1 className='landing-main-title'>Lorem ipsum dolor sit amet.</h1>
-                        <p className='landing-main-subtitle text-align-right'>Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
+                        <p className='landing-main-subtitle text-align-right pr-3'>Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
                     </div>
                 </article>
             </section>

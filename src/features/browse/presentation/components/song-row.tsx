@@ -46,7 +46,7 @@ export default function SongRowItem(props: SongRowItemProps) {
             onClick={props.onClick}
             className="song-row-item-container">
             <div className="leading-container">
-                <img src={EminenCover} alt="" className="song-cover" />
+                <img src={props.coverImage} alt="" className="song-cover" />
             </div>
             <span className='song-icon-options'>
                 <FavoriteToggle active={false} />

@@ -1,61 +1,113 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import _ from 'lodash'
 import ReactPlater from 'react-player';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-
 import PlayerContext from '../../../core/player-context';
-export default function BottomPlayer(params: any) {
-    const playerContext = useContext(PlayerContext);
-    const { song } = playerContext;
-    let url = '';
-    if (song != undefined) {
-        url = song.url;
+import PlayControls from './components/play-controls';
+
+
+
+
+export interface BottomPlayerState {
+    muted?: boolean,
+    duration?: number,
+    playedSeconds?: number,
+    /**
+     * Fracción reproducida
+     */
+    played?: number,
+    seeking: boolean
+}
+
+class BottomPlayer extends React.Component<any, BottomPlayerState>{
+    constructor(props: any) {
+        super(props)
+        this.state = {
+            duration: 0,
+            muted: false,
+            playedSeconds: 0,
+            played: 0,
+            seeking: false
+        };
+    };
+    static contextType = PlayerContext;
+
+    player: any;
+
+
+    ref = (player: any) => {
+        this.player = player
     }
 
-    
 
+    seekTo = (e: number | number[]) => {
+        this.setState({ seeking: false })
+        if (this.player) {
+            this.player.seekTo(e)
+            if (typeof e == "number") {
+                this.setState({ played: e })
+            }
+        }
+    }
 
-    return (
-        <div className={`bottom-player-container ${song?'':'bottom-player-hidden'}`}>
-            <div className='video-thumbnail'>
-                <ReactPlater url={url} style={{ 'display': 'none' }} playing={playerContext.isPlaying} />
-            </div>
-            <div className="song-description-container">
-                <div className="artist-name-container">
-                    <h3 className="artist-name">Eminem Music</h3>
+    render() {
+        const { song, isPlaying } = this.context;
+        const { muted, } = this.state
+        let url = ''
+        if (song) {
+            url = `https://www.youtube.com/watch?v=${song.id.videoId}`;
+        }
+        return (
+            <div className={`bottom-player-container ${song ? '' : 'bottom-player-hidden'}`}>
+                <div className='video-thumbnail'>
+                    <img
+                        className='video-thumbnail'
+                        src={song?.snippet.thumbnails.high.url}
+                    />
+                    <ReactPlater
+                        ref={this.ref}
+                        muted={muted}
+                        onDuration={(duration) => {
+                            this.setState({
+                                duration
+                            });
+                        }}
+                        onProgress={({ playedSeconds, played }) => {
+                            this.setState({
+                                playedSeconds: playedSeconds,
+                                played: played
+                            });
+                        }}
+
+                        url={url} style={{ 'display': 'none' }}
+                        playing={isPlaying} />
                 </div>
-                <div className="song-subtitle-container">
-                    <span className="song-subtitle">Rap God (Explicit & Expl</span>
-                    <span className="favorite-container">
-                        <span aria-label='im' className="favorite-icon button" role='img'>
-                            <FavoriteBorderIcon />
+                <div className="song-description-container">
+                    <div className="artist-name-container">
+                        <h3 className="artist-name">{_.get(song, 'snippet.channelTitle')}</h3>
+                    </div>
+                    <div className="song-subtitle-container">
+                        <span className="song-subtitle">{_.get(song, 'snippet.title')}</span>
+                        <span className="favorite-container">
+                            <span aria-label='im' className="favorite-icon button" role='img'>
+                                <FavoriteBorderIcon />
+                            </span>
                         </span>
-                    </span>
+                    </div>
+                </div>
+                <PlayControls
+                    seekTo={this.seekTo}
+                    {...this.state}
+                />
+
+
+                <div className="right-icons-container">
+                    🔉 🎶
                 </div>
             </div>
+        )
 
-            <PlayControls />
+    }
 
-
-            <div className="right-icons-container">
-                🔉 🎶
-            </div>
-        </div>
-    )
 }
-
-function PlayControls(params: any) {
-    return (
-        <div className="play-controls-container">
-            <div className="row-icons-container">
-                ⏮ ⏭ <PlayArrowIcon style={{color:'white'}}/>  🔄
-            </div>
-            <div className="line-reproductor-container">
-                <span className='time-count'>1:45</span>
-                <div className="line"></div>
-                <span className='time-count'>6:03</span>
-            </div>
-        </div>
-    )
-}
+export default BottomPlayer

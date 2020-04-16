@@ -6,8 +6,15 @@ import SongRowItem, { SongRowItemProps } from './components/song-row';
 import ArrowBackIos from '@material-ui/icons/ArrowBackIos'
 import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos'
 import IconButton from '@material-ui/core/IconButton'
-export default function BrowsePage(params: any) {
+import Qs from 'query-string';
+// interface BrowsePageProps extends BrowserRouter {
+
+// }
+export default function BrowsePage(props: any) {
+
+    const { location: { search } } = props;
     const { setSong, setPlaying } = React.useContext(PlayerContext);
+   console.log( Qs.parse(search))
     return (
         <div className="browser-container">
             <header className='p-2'>
@@ -20,7 +27,7 @@ export default function BrowsePage(params: any) {
                 <span className='browse-title'>The Killers Radio</span>
             </header>
             <div className="song-list">
-                <SongRowItem {...new Song1()} onClick={() => {
+                {/* <SongRowItem {...new Song1()} onClick={() => {
                     setSong(new Song('Hola', 'DE', 'https://www.youtube.com/watch?v=OXJojqTzJL0&t=559s'))
                     setPlaying(true)
                 }} />
@@ -39,7 +46,7 @@ export default function BrowsePage(params: any) {
                 <SongRowItem {...new Song2()} onClick={() => {
                     setSong(new Song('Hola', 'DE', 'https://www.youtube.com/watch?v=OXJojqTzJL0&t=559s'))
                     setPlaying(true)
-                }} />
+                }} /> */}
 
 
             </div>

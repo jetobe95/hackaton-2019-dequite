@@ -5,21 +5,26 @@ interface TextInputProps {
     onFocus?():void
 }
 export default function TextInput(props: TextInputProps) {
+    const [value,setValue] = React.useState<string>('')
     function onChange(string: string) {
-        props.onChangeText && props.onChangeText(string)
+        setValue(string);
     }
     return (
-        <div className="text-input-container">
+        <form className="text-input-container"  onSubmit={(e)=>{
+            e.preventDefault()
+            props.onChangeText && props.onChangeText(value);
+        }}>
             <div className="icon-container">
                 <SearchIcon />
             </div>
             <input
-                onFocus={props.onFocus}
+
+               
                 onChange={({ target: { value } }) => onChange(value)}
                 type="text"
                 placeholder='Search'
                 className='text-input'
             />
-        </div>
+        </form>
     )
 }

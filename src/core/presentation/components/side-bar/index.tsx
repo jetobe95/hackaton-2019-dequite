@@ -1,16 +1,29 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink,withRouter } from 'react-router-dom'
+
 import soundHouseLogo from '../../../../assets/sound-house.png'
 import NavigationKeys from '../../../navigation/key';
+import TextInput from '../../../components/inputs/text-Input';
+import UserContext, { IUserContext } from '../../../user-context';
 
-export default function LeftSideBar(props: any) {
-    const activeClass:string = 'active';
+function LeftSideBar(props: any) {
+    const activeClass: string = 'active';
+
+    function onFocus():void {
+        props.history.push('/')
+    }
+
+    const userContext: IUserContext = React.useContext(UserContext);
+
     return (
-        <nav className='side-bar-container'>
-            <img src={soundHouseLogo} className='logo' alt='soung-house-logo.png'/>
-            <input type="text" placeholder='Search' className='search-side-bar' />
-            <div style={{ marginBottom: '3rem' }}></div>
+        <nav className='side-bar-container '>
+            <img src={soundHouseLogo} className='logo' alt='soung-house-logo.png' />
+            <TextInput
+                onFocus={onFocus}
+                onChangeText={(s) => userContext.setSearchQuery(s)}
+            />
             <NavLink
+                className='mt-3'
                 exact={false}
                 isActive={(_, { pathname }) => (pathname === ('/select-genre') || pathname === '/')}
                 activeClassName={activeClass}
@@ -31,25 +44,28 @@ export default function LeftSideBar(props: any) {
             <NavLink
                 activeClassName={activeClass}
                 to={NavigationKeys.mySongs} >
-              My Songs
+                My Songs
             </NavLink>
             <NavLink
                 activeClassName={activeClass}
                 to={NavigationKeys.artists} >
-                    Artists
+                Artists
             </NavLink>
-          
+
             <br />
             <NavLink
                 activeClassName={activeClass}
                 to={NavigationKeys.playLists} >
-                    Playlists
+                Playlists
             </NavLink>
             <NavLink
                 activeClassName={activeClass}
                 to={NavigationKeys.createPlayLists} >
-                   + Create playlist
+                + Create playlist
             </NavLink>
         </nav>
     )
 }
+
+
+export default withRouter(LeftSideBar)

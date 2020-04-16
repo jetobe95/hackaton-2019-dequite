@@ -1,0 +1,38 @@
+.text-input-container {
+    max-width: 100%;
+    display: flex;
+    color: rgba($color: #fff, $alpha: 0.3);
+    border-bottom: 0.8px solid darken(#FFFFFF, 40%);
+    padding: 5px 0;
+    margin: 0 10px;
+
+    .icon-container{
+        @media screen and (max-width:map-get($sizes, 'sm')) {
+            display: none;
+        }
+    }
+
+}
+
+.text-input {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    padding-bottom: 0.25rem;
+    font-size: 1rem;
+    margin-left: 5px;
+    font-family: $font-family;
+
+    
+    &::placeholder {
+       
+        color: rgba($color: #fff, $alpha: 0.3);
+        font-size: 0.9rem;
+
+        @media screen and (max-width:map-get($sizes, 'sm')) {
+            font-size: 0.7rem;
+        }
+    }
+}

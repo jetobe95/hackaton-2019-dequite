@@ -1,5 +1,5 @@
 .app-container{
-  
+    @include vertical-primary-gradient();
     height: 100vh;
     display: grid;
     grid-template: {

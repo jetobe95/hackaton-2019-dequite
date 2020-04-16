@@ -24,6 +24,12 @@ $abbr in $sides {
     .p#{$abbr}-#{$i} {
       padding-#{$side}: $i * 1rem;
     }
+    .p-#{$i} {
+      padding: $i * 1rem;
+    }
+    .m-#{$i} {
+      margin: $i * 1rem;
+    }
   }
 }
 
@@ -58,15 +64,23 @@ $abbr in $sides {
   @include button;
 }
 
-html{
-  
+html {
+
   @include vertical-primary-gradient();
   height: 100%;
 }
+
+$font-family:'Quicksand',
+sans-serif;
+
 body {
-  font-family: 'Quicksand', sans-serif;
+  font-family: $font-family;
 }
 
+
+h1{
+  font-weight: 400;
+}
 
 @import './app';
 @import './core/presentation/components/side-bar/styles';
@@ -80,3 +94,4 @@ body {
 @import './features/select-genre-page/presentation/styles';
 @import './features/browse/presentation/styles';
 @import './features/bottom-player/presentation/styles';
+@import './core/components/inputs/text-input';

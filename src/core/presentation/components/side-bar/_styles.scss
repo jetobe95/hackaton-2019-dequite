@@ -1,27 +1,18 @@
 .side-bar-container {
-    // position: fixed;
     margin-right: 1rem;
     background-color: #252525;
     text-align: center;
     box-shadow: 1px 1px 6px 0px rgba(#000000, .5);
 
+
     .logo {
         width: 60%;
         object-fit: contain;
         margin: 1rem;
+        margin-bottom: 3rem;
     }
 
-    .search-side-bar{
-        background-color: transparent;
-        border: none;
-        outline: none;
-        color: white;
-        border-bottom: 0.8px solid darken(#FFFFFF,40%);
-        padding-bottom: 0.25rem;
-        &::placeholder{
-            color: rgba($color: #fff, $alpha: 0.3);
-        }
-    }
+    
 
     a {
         display: block;
@@ -30,6 +21,7 @@
         color: white;
         font-size: 0.8rem;
         background-color: transparent;
+        width: 100%;
     }
 
     a.active {

@@ -13,9 +13,11 @@ export default function BottomPlayer(params: any) {
         url = song.url;
     }
 
+    
+
 
     return (
-        <div className="bottom-player-container">
+        <div className={`bottom-player-container ${song?'':'bottom-player-hidden'}`}>
             <div className='video-thumbnail'>
                 <ReactPlater url={url} style={{ 'display': 'none' }} playing={playerContext.isPlaying} />
             </div>

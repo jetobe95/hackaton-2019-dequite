@@ -19,11 +19,15 @@ export interface IUserContext {
     setLoadingToken(bool: boolean): void,
     setUser(User: User): void,
     getUser(): User,
+    searchQuery: string,
+    setSearchQuery(arg: string): void
 }
 
 
 const UserContext = createContext<any>({});
 export class Provider extends React.Component implements IUserContext {
+
+    searchQuery: string = '';
     loadingToken: boolean = false;
     user: User = new User()
     landingPageShown: boolean = false;
@@ -40,6 +44,11 @@ export class Provider extends React.Component implements IUserContext {
     setUser = (user: User): void => {
         localStorage.setItem('user', user.toJSON())
         this.user = user;
+        this.setState({})
+    }
+
+    setSearchQuery = (arg: string): void => {
+        this.searchQuery = arg;
         this.setState({})
     }
 
@@ -101,7 +110,9 @@ export class Provider extends React.Component implements IUserContext {
             loadingToken: this.loadingToken,
             setLoadingToken: this.setLoadingToken,
             setUser: this.setUser,
-            getUser: this.getUser
+            getUser: this.getUser,
+            searchQuery: this.searchQuery,
+            setSearchQuery: this.setSearchQuery,
         }
         return (
             <UserContext.Provider value={value}>

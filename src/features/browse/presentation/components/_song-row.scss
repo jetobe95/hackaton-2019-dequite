@@ -17,14 +17,14 @@
         }
     }
     color: white;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     .leading-container{
     }
 
     .song-cover {
         min-height: 100%;
         width: 100%;
-        object-fit: contain;
+        object-fit: cover;
     }
 
 
@@ -35,7 +35,7 @@
         padding: 0.5rem 0;
         text-overflow: ellipsis;
         word-wrap: break-word;
-        font-size: .9rem;
+        font-size: .7rem;
     }
 
     .song-icon-options {
@@ -47,14 +47,17 @@
     }
    
     .artist-title {
+        max-height: 100%;
+        text-overflow: ellipsis;
+        word-break: break-all;
     }
     .song-title{
-
         grid-column: 5 span;
+        justify-self: start;
     }
     .artist-title{
         align-self: center;
-        justify-self: center;
+        justify-self: start;
     }
     .duration {
         grid-column: 2 span;

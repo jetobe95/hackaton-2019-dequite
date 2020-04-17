@@ -1,5 +1,7 @@
 .show-search-container {
     display: grid;
+    grid-auto-rows: 52px;
     width: 100%;
     padding-top: 2rem;
+    padding-bottom: 140px;
 }

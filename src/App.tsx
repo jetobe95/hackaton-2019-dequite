@@ -15,6 +15,7 @@ import PageNotFound from './features/page-not-found/presentation';
 import NavigationKeys from './core/navigation/key';
 import BrowsePage from './features/browse/presentation';
 import BottomPlayer from './features/bottom-player/presentation';
+import CreatePlayList from './features/create-playlist/presentation';
 
 interface AppState {
   token: string,
@@ -39,6 +40,7 @@ const privateRoutes = (
         <Route exact component={HomePage} path='/' />
         <Route component={SelectGenrePage} path='/select-genre' />
         <Route component={BrowsePage} path={NavigationKeys.browse} />
+        <Route component={CreatePlayList} path={NavigationKeys.createPlayLists} />
         <Route component={PageNotFound} path='/not-found' />
         <BottomPlayer />
       </div>

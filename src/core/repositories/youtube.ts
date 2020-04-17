@@ -35,7 +35,7 @@ export default class Youtube {
                 q,
                 key: config.youtubeAccessToken,
                 access_token: config.youtubeAccessToken,
-                maxResults: 10,
+                maxResults: 20,
                 type:'video',
                 order:'rating'
 

@@ -77,7 +77,10 @@ body {
   font-family: $font-family;
 }
 
+h1,h2,h3,h4,h5{
 
+  color: white;
+}
 h1{
   font-weight: 400;
 }
@@ -95,3 +98,4 @@ h1{
 @import './features/browse/presentation/styles';
 @import './features/bottom-player/presentation/styles';
 @import './core/components/inputs/text-input';
+@import './features/create-playlist/presentation/styles';

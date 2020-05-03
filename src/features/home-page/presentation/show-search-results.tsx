@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './show_search_styles.module.scss'
 import UserContext, { IUserContext } from '../../../core/user-context';
 import PlayerContext from '../../../core/player-context';
 import HomePageBloc from '../bloc/home-page-bloc';
@@ -35,7 +36,7 @@ export default function ShowSearchResults(props: any) {
     }
 
     return (
-        <div className='show-search-container'>
+        <div className={styles.showSearchContainer}>
             <h1>Resultados de busqueda {userContext.searchQuery}</h1>
             {
                 searchResults.map((result) => {
